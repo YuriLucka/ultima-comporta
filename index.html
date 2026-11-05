@@ -30,8 +30,34 @@
       @media (orientation: portrait) and (pointer: coarse) {
         #girar { display: flex; }
       }
+
+      /* Tela cheia obrigatória (src/ui/FullscreenGate.ts): o jogo fica pausado esperando. */
+      #telacheia {
+        display: none; position: fixed; inset: 0; z-index: 9;
+        align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+        background: rgba(15, 27, 43, 0.94); color: #EAF1F8; text-align: center; padding: 32px;
+        font: 18px/1.4 "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+      }
+      #telacheia.visivel { display: flex; }
+      #telacheia strong { color: #F2B35E; font: 600 28px Fraunces, Lora, Georgia, serif; }
+      #telacheia svg { width: 56px; height: 56px; image-rendering: pixelated; }
+      #telacheia-botao {
+        margin-top: 6px; padding: 14px 30px; cursor: pointer;
+        background: #F2B35E; color: #2A1A10; border: 3px solid #5A3A24; border-radius: 10px;
+        box-shadow: 0 4px 0 #5A3A24; font: 600 20px Fraunces, Lora, Georgia, serif;
+      }
+      #telacheia-botao:hover { background: #FFC97A; }
+      #telacheia-botao:active { transform: translateY(3px); box-shadow: 0 1px 0 #5A3A24; }
+      #telacheia .dica { font-size: 14px; color: #9FB2C6; }
+      #telacheia .falha { display: none; font-size: 15px; color: #E4725A; }
+      #telacheia-janela {
+        display: none; background: none; border: 0; cursor: pointer; padding: 4px;
+        color: #9FB2C6; text-decoration: underline; font: 15px "Nunito Sans", system-ui, sans-serif;
+      }
+      #telacheia.falhou .falha, #telacheia.falhou #telacheia-janela { display: block; }
+      @media (pointer: coarse) { #telacheia .dica { display: none; } }
     </style>
-    <script type="module" crossorigin src="./assets/index-D-P-KDw_.js"></script>
+    <script type="module" crossorigin src="./assets/index-DyOlGkH0.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CfIEo5as.css">
   </head>
   <body>
@@ -40,6 +66,17 @@
       <div class="icone">📱</div>
       <strong>Gire o celular</strong>
       <span>A Última Comporta se joga com o celular deitado.</span>
+    </div>
+    <div id="telacheia">
+      <svg viewBox="0 0 14 14" aria-hidden="true">
+        <path fill="#F2B35E" d="M1 1h5v2H3v3H1zM8 1h5v5h-2V3H8zM1 8h2v3h3v2H1zM11 8h2v5H8v-2h3z" />
+      </svg>
+      <strong>Tela cheia</strong>
+      <span>A Última Comporta é jogada em tela cheia.</span>
+      <button id="telacheia-botao" type="button">Entrar em tela cheia</button>
+      <span class="dica">ou aperte Enter</span>
+      <span class="falha">O navegador não deixou abrir em tela cheia.</span>
+      <button id="telacheia-janela" type="button">Jogar na janela mesmo</button>
     </div>
   </body>
 </html>
