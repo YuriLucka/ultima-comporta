@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#0F1B2B" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>A Última Comporta</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #0F1B2B; overflow: hidden; }
+      /* Sem rolagem, zoom ou seleção de texto ao tocar no jogo. */
+      body { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+      /* O jogo estica na largura (telas compridas mostram mais do mapa), mas nunca fica mais alto que 16:9:
+         em telas mais "quadradas" sobra uma faixa em cima e embaixo, e a interface continua nas bordas. */
+      body { display: flex; align-items: center; justify-content: center; }
+      #game { width: 100vw; height: min(100vh, 56.25vw); }
+      @supports (height: 100dvh) { #game { height: min(100dvh, 56.25vw); } }
+      canvas { display: block; touch-action: none; }
+
+      /* Celular em pé: pede para deitar (o jogo é 16:9). */
+      #girar {
+        display: none; position: fixed; inset: 0; z-index: 10;
+        align-items: center; justify-content: center; flex-direction: column; gap: 16px;
+        background: #0F1B2B; color: #EAF1F8; text-align: center; padding: 32px;
+        font: 18px/1.4 "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+      }
+      #girar strong { color: #F2B35E; font: 26px Fraunces, Lora, Georgia, serif; }
+      #girar .icone { font-size: 48px; transform: rotate(90deg); }
+      @media (orientation: portrait) and (pointer: coarse) {
+        #girar { display: flex; }
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-pOCZF3rZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CfIEo5as.css">
+  </head>
+  <body>
+    <div id="game"></div>
+    <div id="girar">
+      <div class="icone">📱</div>
+      <strong>Gire o celular</strong>
+      <span>A Última Comporta se joga com o celular deitado.</span>
+    </div>
+  </body>
+</html>
